@@ -1,0 +1,24 @@
+{
+  "name": "heditor",
+  "authors": [
+    "Digital Nature <https://github.com/digitalnature>",
+    "Henner Setyono <henner@setyono.net>"
+  ],
+  "description": "A lightweight & simple Markdown editor. Only 3.8 KB gzipped",
+  "license": "MIT",
+  "homepage": "https://github.com/hrsetyono/hEditor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hrsetyono/hEditor.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.8.4",
+    "babel-preset-minify": "^0.4.3",
+  },
+  "scripts": {
+    "sass": "node-sass -w src -o dist --output-style compressed",
+    "bsync": "browser-sync start --proxy \"127.0.0.1:8887/\" --files \"dist/*.css\"",
+    "minify-js": "babel src/ --watch -d dist/ --presets minify"
+  }
+}

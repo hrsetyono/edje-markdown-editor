@@ -1,0 +1,74 @@
+.h-editor
+  --textColor: var(--text, rgba(0,0,0, .5) )
+  --borderColor: #b5bcc2
+  --borderAccentColor: #555d66
+
+  position: relative
+  margin: 0
+  margin-top: 3rem
+
+.h-editor .controls
+  display: -webkit-flex
+  display: flex
+  position: absolute
+  top: 0
+  left: 0
+  padding-top: 1px
+  border: 1px solid var(--borderColor)
+  border-left: 3px solid var(--borderAccentColor)
+  border-bottom: none
+  transform: translateY(-100%)
+
+  a
+    cursor: pointer
+    display: -webkit-flex
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 2.25rem
+    width: auto
+    padding: 0.25rem 0.5rem
+    border: 1px solid transparent
+    border-radius: 4px
+
+    color: var(--textColor)
+    text-decoration: none
+
+  a:hover
+    --textColor: #222
+
+    border-color: rgba(black, .8)
+    box-shadow inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff
+
+
+  a:active
+    transform: translateY(1px)
+
+  svg
+    width: 1rem
+    height: 1rem
+  path
+    fill: var(--textColor)
+  // for no icon
+  i
+    font-style: normal
+    font-weight: 700
+  span
+    display: inline-block
+    margin-left: 0.25rem
+    font-size: var(--smallFontSize, 14px)
+
+  .tool-separator
+    color: transparent
+    margin: -1px 0.5rem 0
+    border-right: 1px solid rgba(black, .2)
+
+
+.h-editor textarea
+  width: 100%
+  padding: 1rem
+  height: 10rem
+  border: 1px solid var(--borderColor)
+  border-left: 3px solid var(--borderAccentColor)
+  
+  line-height: 1.5

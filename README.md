@@ -1,9 +1,32 @@
-# jQuery Markdown editor
+# hEditor
 
-A StackOverflow-style interface for using Markdown with textareas
+A StackOverflow-style interface for using Markdown with textareas.
 
-## [DEMO](http://dev.digitalnature.eu/javascript/jQuery-Markdown-editor/)
+- Require jQuery (pure JS will come soon)
 
-## Usage
+- Only 3.8KB gzipped
 
-    $('textarea').MarkdownEditor();
+![H Editor](https://raw.github.com/hrsetyono/cdn/master/edje-js/h-editor.png)
+
+## Demo
+
+| Name | Link |
+| --- | --- |
+| Basic Usage | [View in Codepen](https://codepen.io/hrsetyono/pen/PoPXXNq) |
+
+## How to Use
+
+```js
+$( 'textarea' ).hEditor({
+  tools: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'quote', '|', 'image', 'code', 'pre' ],
+});
+```
+
+**ARGUMENTS**
+
+- **`tools`** (array) - Specify the order of buttons. The example above already include all supported buttons.
+
+
+### Credit
+
+This is a fork of [MarkdownEditor](https://github.com/hrsetyono/MarkdownEditor) with added features like List and Inline Code. So big thanks to [Digital Nature](https://github.com/digitalnature) for creating an awesome basis for this library.

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- WEBSITE DETAIL -->
+  <title>hEditor Demo</title>
+  <meta name="theme-color" content="#00aadc">
+  <meta name="description" content="A lightweight & simple Markdown editor">
+
+  <!-- STYLESHEET -->
+  <link rel="stylesheet" href="https://cdn.pixelstudio.id/css/normalize.css">
+  <link rel="stylesheet" href="dist/h-editor.css">
+
+  <style>
+    main {
+      padding: 3rem 10px;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+  </style>
+
+</head>
+<body>
+
+<main>
+
+  <textarea id="comment" placeholder="Enter your comment..."></textarea>
+
+</main>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="src/h-editor.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  'use strict';
+
+  $( '#comment' ).hEditor({
+    tools: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'quote', '|', 'image', 'code', 'pre' ],
+  });
+});
+</script>
+
+</body>
+</html>
