@@ -14,7 +14,7 @@
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.8.4",
-    "babel-preset-minify": "^0.4.3",
+    "babel-preset-minify": "^0.4.3"
   },
   "scripts": {
     "sass": "node-sass -w src -o dist --output-style compressed",

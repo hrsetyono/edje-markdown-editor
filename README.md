@@ -27,6 +27,10 @@ $( 'textarea' ).hEditor({
 - **`tools`** (array) - Specify the order of buttons. The example above already include all supported buttons.
 
 
+### Known Bugs
+
+- In Firefox, you can't undo the tag insertion. This is due to this [Firefox bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1220696)
+
 ### Credit
 
 This is a fork of [MarkdownEditor](https://github.com/hrsetyono/MarkdownEditor) with added features like List and Inline Code. So big thanks to [Digital Nature](https://github.com/digitalnature) for creating an awesome basis for this library.

@@ -1,13 +1,10 @@
 /**
  * Markdown Editor v1.0.0
  * https://github.com/hrsetyono/hEditor
- * 
- * TODO:
- * - Set scroll position when adding block syntax
  */
 (function( $ ) { 'use strict';
 
-const tools = {
+const TOOLS = {
   bold: {
     title: 'Bold',
     shortcut: 'b',
@@ -86,7 +83,9 @@ const tools = {
     icon: '<svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M208 32h-48a96 96 0 0 0-96 96v37.48a32.06 32.06 0 0 1-9.38 22.65L9.37 233.37a32 32 0 0 0 0 45.26l45.25 45.25A32 32 0 0 1 64 346.51V384a96 96 0 0 0 96 96h48a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16h-48a32 32 0 0 1-32-32v-37.48a96 96 0 0 0-28.13-67.89L77.25 256l22.63-22.63A96 96 0 0 0 128 165.48V128a32 32 0 0 1 32-32h48a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zm358.63 201.37l-45.25-45.24a32.06 32.06 0 0 1-9.38-22.65V128a96 96 0 0 0-96-96h-48a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h48a32 32 0 0 1 32 32v37.47a96 96 0 0 0 28.13 67.91L498.75 256l-22.62 22.63A96 96 0 0 0 448 346.52V384a32 32 0 0 1-32 32h-48a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h48a96 96 0 0 0 96-96v-37.49a32 32 0 0 1 9.38-22.63l45.25-45.25a32 32 0 0 0 0-45.26z"/></svg>',
   },
 };
-const tags = tools;
+
+// firefox has different text insertion method, so need to add conditional
+const IS_FIREFOX = typeof InstallTrigger !== 'undefined';
 
 
 /**
@@ -110,7 +109,7 @@ $.fn.hEditor = function( args ) {
     let toolsMarkup = '';
 
     for( let toolName of args.tools ) {
-      let toolArgs = tools[ toolName ] ? tools[ toolName ] : null;
+      let toolArgs = TOOLS[ toolName ] ? TOOLS[ toolName ] : null;
       toolsMarkup += formatToolMarkup( toolName, toolArgs );
     }
 
@@ -127,7 +126,7 @@ $.fn.hEditor = function( args ) {
           range          = { start: txt.selectionStart, end: txt.selectionEnd },
           selectedText   = txt.value.substring( range.start, range.end );
 
-      var tag           = $.extend( {}, tags[tagName] ),
+      var tag           = $.extend( {}, TOOLS[ tagName ] ),
           trimmedPh     = $.trim( tag.placeholder ),
           spacesRemoved = tag.placeholder.indexOf( trimmedPh );
 
@@ -150,23 +149,41 @@ $.fn.hEditor = function( args ) {
 
       // no actual text selection or text selection matches default placeholder text
       if( range.start === range.end ) {
-        // if block syntax and not in empty line, add 2 enter
-        if( tag.isBlock && !isEmptyLine( txt ) ) {
-          txt.value += '\n\n';
-          range.end += 2;
+        
+        let insertedValue = tag.start + tag.placeholder + tag.end;
+
+        // if block syntax and source line is not empty, prepend 2 ENTER
+        if( tag.isBlock && txt.value.substring( 0, range.start ).split('\n').pop() !== '' ) {
+          insertedValue = '\n\n' + insertedValue;
+          range.end += 2; // fix the selection
         }
 
-        // if inline syntax and last char is not space, add a space
+        // if block syntax and destination line is not empty, append 1 ENTER
+        if( tag.isBlock && txt.value.substring( range.end ).split('\n')[0] !== '' ) {
+          insertedValue += '\n';
+
+          if( IS_FIREFOX ) {
+            insertedValue += '\n';
+          }
+        }
+
+        // if inline syntax and previous char is not space, prepend a SPACE
         let isLastCharSpace = range.start === 0 || txt.value.charAt( range.start - 1 ) === ' '
         if( !tag.isBlock && !isLastCharSpace ) {
-          txt.value += ' ';
-          range.end += 1;
+          insertedValue = ' ' + insertedValue;
         }
 
-        txt.value = txt.value.substring( 0, range.end ) + tag.start + tag.placeholder + tag.end + txt.value.substring( range.end );
+        // insert the text
+        if( IS_FIREFOX ) {
+          txt.value = txt.value.substring( 0, range.start ) + insertedValue + txt.value.substring( range.end );
+        } else {
+          document.execCommand( 'insertText', false, insertedValue );
+        }
 
+        // set selection
         setCaretToPos( txt, range.end + tag.start.length + spacesRemoved, range.end + tag.start.length + spacesRemoved + trimmedPh.length );
-      // we have selected text
+        
+        // we have selected text
       } else {
         txt.value = txt.value.replace( selectedText, tag.start + selectedText + tag.end );
       }
@@ -230,38 +247,35 @@ $.fn.hEditor = function( args ) {
    * creates a selection inside the textarea
    * if selectionStart = selectionEnd the cursor is set to that point
    */
-  function setCaretToPos( input, selectionStart, selectionEnd ) {
-    input.focus();
+  function setCaretToPos( textarea, selectionStart, selectionEnd ) {
+    textarea.focus();
 
-    if( input.setSelectionRange ) {
-      input.setSelectionRange( adjustOffset( input, selectionStart ), adjustOffset( input, selectionEnd ) );
-    // ie
-    } else if( input.createTextRange ) {
-      var range = input.createTextRange();
+    // for other browser
+    if( textarea.setSelectionRange ) {
+      textarea.setSelectionRange( adjustOffset( textarea, selectionStart ), adjustOffset( textarea, selectionEnd ) );
+    // for IE
+    } else if( textarea.createTextRange ) {
+      var range = textarea.createTextRange();
       range.collapse(true);
       range.moveEnd('character', selectionEnd);
       range.moveStart('character', selectionStart);
       range.select();
     }
-  }
 
+    // scroll to that selection
+    let lineHeight = getComputedStyle( textarea ).lineHeight;
+    let lineNumber = textarea.value.substring( 0, textarea.selectionStart ).split( '\n' ).length;
 
-  /**
-   * Check if current cursor is in empty line or not 
-   */
-  function isEmptyLine( textarea ) {
-    let lines = textarea.value.substring( 0, textarea.selectionStart ).split( '\n' );
-    let currentLineText = lines[ lines.length - 1 ];
-
-    return currentLineText == '';
+    textarea.scrollTop = lineHeight.replace('px', '') * lineNumber;
   }
 
   
   /**
    * Adjust starting offset, because some browsers (like Opera) treat new lines as two characters (\r\n) instead of one character (\n)  
    */
-  function adjustOffset( input, offset ) {
-    var val = input.value, newOffset = offset;
+  function adjustOffset( textarea, offset ) {
+    let val   = textarea.value;
+    let newOffset = offset;
 
     if( val.indexOf( '\r\n' ) > -1 ) {
       var matches = val.replace( /\r\n/g, '\n').slice( 0, offset ).match( /\n/g );
