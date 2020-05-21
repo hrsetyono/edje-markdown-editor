@@ -1,5 +1,5 @@
 /**!
- * hEditor v1.1.0 | @license MIT
+ * hEditor v1.1.1 | @license MIT
  * 
  * Add Markdown toolbar to textarea that outputs Markdown syntax
  * 
