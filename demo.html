@@ -8,7 +8,7 @@
   <!-- WEBSITE DETAIL -->
   <title>hEditor Demo</title>
   <meta name="theme-color" content="#00aadc">
-  <meta name="description" content="A lightweight & simple Markdown editor">
+  <meta name="description" content="A pure JavaScript & lightweight Markdown editor">
 
   <!-- STYLESHEET -->
   <link rel="stylesheet" href="https://cdn.pixelstudio.id/css/normalize.css">
@@ -32,15 +32,14 @@
 </main>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="src/h-editor.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  $( '#comment' ).hEditor({
-    tools: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'quote', '|', 'image', 'code', 'pre' ],
-  });
+  hEditor( document.querySelector( '#comment' ), {
+    buttons: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote', '|', 'code', 'pre', '|', 'undo', 'redo' ],
+  } );
 });
 </script>
 

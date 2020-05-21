@@ -1,23 +1,34 @@
 .h-editor
+  --bgColor: white
   --textColor: var(--text, rgba(0,0,0, .5) )
   --borderColor: #b5bcc2
   --borderAccentColor: #555d66
 
   position: relative
   margin: 0
-  margin-top: 3rem
+  background-color: var(--bgColor)
+  border-left: 3px solid var(--borderAccentColor)
 
-.h-editor .controls
+.h-editor .toolbar
   display: -webkit-flex
   display: flex
-  position: absolute
-  top: 0
-  left: 0
-  padding-top: 1px
+  flex-wrap: wrap
+
+  position: relative
+  width: fit-content
+
   border: 1px solid var(--borderColor)
-  border-left: 3px solid var(--borderAccentColor)
-  border-bottom: none
-  transform: translateY(-100%)
+  border-left: 0
+  border-bottom: 0
+  background-image: linear-gradient(to top, var(--borderColor) 0%, transparent 4%)
+  background-position: top
+  background-size: 100% 36px
+
+  > *
+    -ms-user-select: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    user-select: none
 
   a
     cursor: pointer
@@ -28,31 +39,28 @@
     height: 2.25rem
     width: auto
     padding: 0.25rem 0.5rem
-    border: 1px solid transparent
-    border-radius: 4px
 
     color: var(--textColor)
     text-decoration: none
 
   a:hover
     --textColor: #222
+    box-shadow: inset 0 0 0 1px rgba(black, .8)
 
-    border-color: rgba(black, .8)
-    box-shadow inset 0 0 0 1px #555d66, inset 0 0 0 2px #fff
-
-
-  a:active
+  a:active svg
     transform: translateY(1px)
 
   svg
-    width: 1rem
+    width: auto
     height: 1rem
   path
     fill: var(--textColor)
+  
   // for no icon
   i
     font-style: normal
     font-weight: 700
+
   span
     display: inline-block
     margin-left: 0.25rem
@@ -61,14 +69,18 @@
   .tool-separator
     color: transparent
     margin: -1px 0.5rem 0
-    border-right: 1px solid rgba(black, .2)
+    width: 0
+    border-right: 1px solid var(--borderColor)
 
 
 .h-editor textarea
+  position: relative
+  z-index: 10
+  background-color: var(--bgColor)
   width: 100%
   padding: 1rem
   height: 10rem
   border: 1px solid var(--borderColor)
-  border-left: 3px solid var(--borderAccentColor)
-  
+  border-left: 0
+
   line-height: 1.5
