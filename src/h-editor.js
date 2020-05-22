@@ -1,5 +1,5 @@
 /**!
- * hEditor v1.1.1 | @license MIT
+ * hEditor v1.1.2 | @license MIT
  * 
  * Add Markdown toolbar to textarea that outputs Markdown syntax
  * 
@@ -129,7 +129,7 @@ function hEditor( $textarea, args ) { 'use strict';
 
     // Add URL if link or image button
     if( buttonName === 'link' || buttonName === 'image' ) {
-      let url = prompt( (buttonName !== 'image') ? 'Enter the URL' : 'Enter image URL' , 'http://' );
+      let url = prompt( (buttonName !== 'image') ? 'Enter the URL' : 'Enter image URL' , 'https://' );
 
       // abort inserting link if prompt is empty
       if( !url ) { return; }
