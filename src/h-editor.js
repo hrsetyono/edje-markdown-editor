@@ -5,7 +5,7 @@
  * 
  *     hEditor( textarea, args );
  * 
- * https://github.com/hrsetyono/hEditor
+ * Get the CSS from https://github.com/hrsetyono/hEditor
  */
 function hEditor( $textarea, args ) { 'use strict';
   
