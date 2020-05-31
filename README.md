@@ -13,6 +13,7 @@ A StackOverflow-style interface for using Markdown with textareas.
 | Demo | Link |
 | --- | --- |
 | Basic Usage | [View in Codepen](https://codepen.io/hrsetyono/pen/PoPXXNq) |
+| As WordPress Comment | [Learn how](https://wptips.dev/markdown-comment-without-plugin/) |
 
 ## How to Use
 
