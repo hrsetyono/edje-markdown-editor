@@ -1,34 +1,24 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 const path = require('path');
 
-const srcPath = './src';
-const outputPath = 'dist';
-const entryPoints = {
-  hEditor: `${srcPath}/hEditor.js`,
-};
-
 module.exports = {
-  entry: entryPoints,
+  entry: {
+    main: './src/script.js',
+  },
   output: {
-    path: path.resolve(__dirname, outputPath),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
     libraryExport: 'default',
     libraryTarget: 'umd',
-    library: 'hEditor',
+    library: 'hMarkdownEditor',
   },
   plugins: [
-    new ESLintPlugin(),
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
   ],
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        use: ['eslint-loader'],
-      },
       {
         test: /\.s?[ac]ss$/i,
         use: [

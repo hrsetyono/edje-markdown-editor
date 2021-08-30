@@ -1,8 +1,8 @@
 /**
- * hEditor v1.1.4 | @license MIT
- * https://github.com/hrsetyono/hEditor
+ * Edje Markdown Editor v1.1.4 | @license MIT
+ * https://github.com/hrsetyono/edje-markdown-editor
  */
-import './hEditor.sass';
+import './style.sass';
 
 /**
  * Get a button data
@@ -353,7 +353,7 @@ function onButtonClick($button, $textarea) {
  * @param Node $textarea
  * @param Object arguments
  */
-function hEditor(
+function hMarkdownEditor(
   $textarea,
   { buttons = ['bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote'] },
 ) {
@@ -382,4 +382,4 @@ function hEditor(
   });
 }
 
-export default hEditor;
+export default hMarkdownEditor;

@@ -1,4 +1,4 @@
-# hEditor
+# Edje Markdown Editor
 
 ![H Editor](https://raw.github.com/hrsetyono/cdn/master/edje-js/h-editor-1.1.png)
 
@@ -28,7 +28,7 @@ Add this in your package: `"hrsetyono/h-editor": "~1.1.2"`. Code sample for Vue 
 ## How to Use
 
 ```js
-hEditor( $textarea, [args] )
+hMarkdownEditor( $textarea, [args] )
 ```
 
 `$textarea` (Node) - The textarea that you want to add buttons to.
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let $textarea = document.querySelector( '#comment' );
   if( $textarea ) {
-    hEditor( $textarea, {
+    hMarkdownEditor( $textarea, {
       buttons: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote' ],
     } );
   }
@@ -67,7 +67,7 @@ If you use jQuery:
 ```js
 let $textarea = $('#comment');
 
-hEditor( $textarea.get(0), { ... } );
+hMarkdownEditor( $textarea.get(0), { ... } );
 ```
 
 ## Example (Vue)
@@ -77,14 +77,14 @@ hEditor( $textarea.get(0), { ... } );
   <textarea ref="content" v-model="content">
 </template>
 <script>
-  import hEditor from 'h-editor';
-  import 'h-editor/dist/h-editor.css';
+  import hMarkdownEditor from 'edje-markdown-editor';
+  import 'edje-markdown-editor/dist/main.css';
 
   export default {
     ...
     mounted() {
       this.$nextTick( () => {
-        hEditor( this.$refs.content );
+        hMarkdownEditor( this.$refs.content );
       });
     },
     ...

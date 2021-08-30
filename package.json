@@ -1,8 +1,8 @@
 {
-  "name": "h-editor",
+  "name": "edje-markdown-editor",
   "version": "1.1.4",
   "description": "A lightweight & simple Markdown editor.",
-  "main": "dist/hEditor.js",
+  "main": "dist/edje-markdown-editor.js",
   "dependencies": {
     "@babel/polyfill": "^7.11.5"
   },
@@ -12,13 +12,10 @@
     "@babel/preset-env": "^7.11.5",
     "autoprefixer": "^10.0.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
-    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-webpack-plugin": "^3.0.1",
     "file-loader": "^6.1.0",
     "lodash": "^4.17.20",
     "mini-css-extract-plugin": "^0.11.2",
@@ -54,9 +51,9 @@
     "javascript"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/hrsetyono/hEditor",
+  "homepage": "https://github.com/hrsetyono/edje-markdown-editor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hrsetyono/hEditor.git"
+    "url": "https://github.com/hrsetyono/edje-markdown-editor.git"
   }
 }

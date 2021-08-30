@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- WEBSITE DETAIL -->
-  <title>hEditor Demo</title>
+  <title>Edje Markdown Editor Demo</title>
   <meta name="theme-color" content="#00aadc">
   <meta name="description" content="A pure JavaScript & lightweight Markdown editor">
 
   <!-- STYLESHEET -->
   <!-- <link rel="stylesheet" href="https://cdn.pixelstudio.id/css/normalize.css"> -->
-  <link rel="stylesheet" href="dist/hEditor.css">
+  <link rel="stylesheet" href="dist/main.css">
 
   <style>
     main {
@@ -32,12 +32,12 @@
 </main>
 
 
-<script src="dist/hEditor.js"></script>
+<script src="dist/main.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  hEditor( document.querySelector( '#comment' ), {
+  hMarkdownEditor( document.querySelector( '#comment' ), {
     buttons: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote', '|', 'code', 'pre', '|', 'undo', 'redo' ],
   } );
 });
