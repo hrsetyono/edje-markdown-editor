@@ -1,5 +1,5 @@
 /**
- * Edje Markdown Editor v1.1.4 | @license MIT
+ * Edje Markdown Editor v1.1.7 | @license MIT
  * https://github.com/hrsetyono/edje-markdown-editor
  */
 import './style.sass';
@@ -338,10 +338,10 @@ function onButtonClick($button, $textarea) {
     }
 
     appendText($textarea, insertedText, range);
-    setCaretToPos(
-      $textarea,
-      range.end + button.start.length, range.end + button.start.length + placeholder.length,
-    );
+
+    const startPos = range.end + button.start.length;
+    const endPos = range.end + button.start.length + placeholder.length;
+    setCaretToPos($textarea, startPos, endPos);
   } else {
     // if current cursor has selection
     appendText($textarea, button.start + selectedText + button.end, range);
@@ -353,10 +353,11 @@ function onButtonClick($button, $textarea) {
  * @param Node $textarea
  * @param Object arguments
  */
-function hMarkdownEditor(
-  $textarea,
-  { buttons = ['bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote'] },
-) {
+function hMarkdownEditor($textarea, args = {}) {
+  const {
+    buttons = ['bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote'],
+  } = args;
+
   // create wrapper
   const $wrapper = document.createElement('div');
   const $toolbarMarkup = formatToolbar(buttons);

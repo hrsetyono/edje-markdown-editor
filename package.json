@@ -1,10 +1,10 @@
 {
   "name": "edje-markdown-editor",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "A lightweight & simple Markdown editor.",
   "main": "dist/main.js",
   "dependencies": {
-    "@babel/polyfill": "^7.11.5"
+    "core-js": "^3.15.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -12,6 +12,7 @@
     "@babel/preset-env": "^7.11.5",
     "autoprefixer": "^10.0.0",
     "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
     "css-loader": "^4.3.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -38,7 +39,10 @@
   "babel": {
     "presets": [
       "@babel/preset-env",
-      "@wordpress/babel-preset-default"
+      {
+        "useBuiltIns": "usage",
+        "corejs": 3
+      }
     ]
   },
   "authors": [
