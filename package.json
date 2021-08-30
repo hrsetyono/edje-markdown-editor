@@ -1,8 +1,8 @@
 {
   "name": "edje-markdown-editor",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A lightweight & simple Markdown editor.",
-  "main": "dist/edje-markdown-editor.js",
+  "main": "dist/main.js",
   "dependencies": {
     "@babel/polyfill": "^7.11.5"
   },
