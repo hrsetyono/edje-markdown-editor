@@ -1,0 +1,11 @@
+{
+  "extends": ["airbnb/base"],
+  "rules": {
+    "linebreak-style": 0,
+    "no-alert": "off",
+    "no-param-reassign": [2, { "props": false }]
+  },
+  "env": {
+    "browser": true
+  }
+}

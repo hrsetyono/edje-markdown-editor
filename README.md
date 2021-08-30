@@ -8,24 +8,30 @@ A StackOverflow-style interface for using Markdown with textareas.
 
 - **Lightweight** - Only 5.3 KB gzipped.
 
-- **100% Compatible** - It's still a plain textarea, so no need to worry about lag or crashing on mobile.
+- **100% Compatible** - It's still a plain textarea, so no need to worry about lag on mobile.
 
 | Demo | Link |
 | --- | --- |
 | Basic Usage | [View in Codepen](https://codepen.io/hrsetyono/pen/PoPXXNq) |
 | As WordPress Comment | [Learn how](https://wptips.dev/markdown-comment-without-plugin/) |
 
+## How to Install
+
+**MANUAL**
+
+Get the CSS and JS in `/dist` directory and link them in your website.
+
+**NPM PACKAGE**
+
+Add this in your package: `"hrsetyono/h-editor": "~1.1.2"`. Code sample for Vue can be found below.
+
 ## How to Use
 
-First, get the CSS and JS file from `/dist` folder.
-
-Then use this function to initiate the editor:
-
 ```js
-hEditor( textarea, [args] )
+hEditor( $textarea, [args] )
 ```
 
-`textarea` (Node) - The textarea that you want to add buttons to.
+`$textarea` (Node) - The textarea that you want to add buttons to.
 
 `args` (Object / optional)
 
@@ -37,8 +43,7 @@ hEditor( textarea, [args] )
 
     Other available buttons: `h1`, `h2`, `h3`, `code`, `pre`, `hr`, `strike`, `undo`, `redo`
 
-
-## Example
+## Example (Native JS)
 
 ```js
 <textarea id="comment"></textarea>
@@ -47,10 +52,43 @@ hEditor( textarea, [args] )
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
-  hEditor( document.querySelector( '#comment' ), {
-    buttons: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote' ],
-  } );
+  let $textarea = document.querySelector( '#comment' );
+  if( $textarea ) {
+    hEditor( $textarea, {
+      buttons: [ 'bold', 'italic', 'link', '|', 'bullist', 'numlist', 'image', 'quote' ],
+    } );
+  }
 });
+</script>
+```
+
+If you use jQuery:
+
+```js
+let $textarea = $('#comment');
+
+hEditor( $textarea.get(0), { ... } );
+```
+
+## Example (Vue)
+
+```vue
+<template>
+  <textarea ref="content" v-model="content">
+</template>
+<script>
+  import hEditor from 'h-editor';
+  import 'h-editor/dist/h-editor.css';
+
+  export default {
+    ...
+    mounted() {
+      this.$nextTick( () => {
+        hEditor( this.$refs.content );
+      });
+    },
+    ...
+  }
 </script>
 ```
 

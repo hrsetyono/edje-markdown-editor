@@ -1,24 +1,62 @@
 {
-  "name": "heditor",
+  "name": "h-editor",
+  "version": "1.1.4",
+  "description": "A lightweight & simple Markdown editor.",
+  "main": "dist/hEditor.js",
+  "dependencies": {
+    "@babel/polyfill": "^7.11.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "autoprefixer": "^10.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^4.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-webpack-plugin": "^3.0.1",
+    "file-loader": "^6.1.0",
+    "lodash": "^4.17.20",
+    "mini-css-extract-plugin": "^0.11.2",
+    "node-sass": "^4.14.1",
+    "postcss": "^8.0.8",
+    "postcss-loader": "^4.0.2",
+    "sass-loader": "^10.0.2",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "publish": "npm publish || true"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@wordpress/babel-preset-default"
+    ]
+  },
   "authors": [
     "Digital Nature <https://github.com/digitalnature>",
     "Henner Setyono <henner@setyono.net>"
   ],
-  "description": "A lightweight & simple Markdown editor. Only 3.8 KB gzipped",
+  "keywords": [
+    "editor",
+    "markdown",
+    "javascript"
+  ],
   "license": "MIT",
   "homepage": "https://github.com/hrsetyono/hEditor",
   "repository": {
     "type": "git",
     "url": "https://github.com/hrsetyono/hEditor.git"
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "babel-preset-minify": "^0.4.3"
-  },
-  "scripts": {
-    "sass": "node-sass -w src -o dist --output-style compressed",
-    "bsync": "browser-sync start --proxy \"127.0.0.1:8887/\" --files \"dist/*.css\"",
-    "minify-js": "babel src/ --watch -d dist/ --presets minify"
   }
 }
